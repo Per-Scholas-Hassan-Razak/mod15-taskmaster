@@ -25,7 +25,8 @@ const userSchema = new Schema({
   },
   password: {
     type: String,
-    required: [true, "email is required"],
+    required: [true, "password is required"],
+    minLength:6,
     select:false
   },
   role:{
