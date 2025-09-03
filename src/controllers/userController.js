@@ -14,8 +14,8 @@ const createNewUser = async(req, res) => {
 const loginExistingUser = async(req, res) => {
     try{
         const {username, email, password} = req.body
-        const newUser = await loginUser({username, email, password})
-        return res.status(200).json(newUser)
+        const user = await loginUser({username, email, password})
+        return res.status(200).json(user)
     }catch(error){
         return handleError(error, res)
     }

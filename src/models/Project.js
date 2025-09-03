@@ -20,6 +20,18 @@ const projectSchema = new Schema({
 
 );
 
+projectSchema.index({ user: 1, name: 1 }, { unique: true });
+
+projectSchema.set("toJSON", {
+  transform: (doc, ret) => {
+    ret.id = ret._id.toString();
+    delete ret._id;
+    delete ret.__v;
+    return ret;
+  },
+});
+
+
 
 const Project = mongoose.model("Project", projectSchema);
 

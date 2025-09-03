@@ -27,12 +27,10 @@ const loginUser = async(data) => {
         throw error
     }
 
-    const token = signToken({sub:existingUser.id, role:existingUser.role})
-    return {token: token, 
-        user:{
-        _id:existingUser.id,
-        role:existingUser.role
-    }}
+    const payload = {sub:existingUser.id, role:existingUser.role}
+
+    const token = signToken(payload)
+    return {token, payload}
 }
 
 
