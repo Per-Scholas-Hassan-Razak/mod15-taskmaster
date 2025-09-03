@@ -10,9 +10,6 @@ const handleError = (err, res) => {
   }
 
   if (err.name === "ValidationError") {
-    // const path = Object.values(err.errors).map((p) => {
-
-    // })
     return res.status(400).json({ errorMessage: err.message});
   }
 
