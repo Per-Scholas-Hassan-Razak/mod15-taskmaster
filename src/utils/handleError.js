@@ -1,5 +1,8 @@
 const handleError = (err, res) => {
   console.error(err);
+  if(err.status == 404){
+    return res.status(400).json({error:err.message})
+  }
 
   if (err.code === 11000 && err.keyValue) {
     const field = Object.keys(err.keyValue)[0];

@@ -1,10 +1,16 @@
 const express = require("express");
 const router = express.Router();
 const requireAuth = require("../middleware/auth/auth");
-const {createNewProject} =  require('../controllers/projectController')
+const {
+  createNewProject,
+  getAllProjects,
+  deleteProject,
+} = require("../controllers/projectController");
 
 router.use(requireAuth);
 
+router.get("/", getAllProjects);
 router.post("/", createNewProject);
+router.put("/:id", deleteProject);
 
-module.exports = router
+module.exports = router;
