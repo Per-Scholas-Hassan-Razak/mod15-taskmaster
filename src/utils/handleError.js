@@ -1,7 +1,8 @@
 const handleError = (err, res) => {
   console.error(err);
+  
   if(err.status == 404){
-    return res.status(400).json({error:err.message})
+    return res.status(404).json({errorMessage:err.message})
   }
 
   if (err.code === 11000 && err.keyValue) {

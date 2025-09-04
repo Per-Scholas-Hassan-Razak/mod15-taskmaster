@@ -21,10 +21,9 @@ const allProjects = async (userId) => {
     return projects
 }
 
-const deleteProject = async (userId, projectId) => {
+const deleteExistingProject = async (userId, projectId) => {
     if(
-        !userId || !mongoose.Types.ObjectId.isValid(userId)
-        || projectId || !mongoose.Types.ObjectId.isValid(projectId)
+       !projectId || !mongoose.Types.ObjectId.isValid(projectId)
     
     ){
         const error = new Error("Invalid id")
@@ -35,4 +34,4 @@ const deleteProject = async (userId, projectId) => {
     return deleted
 }
 
-module.exports = { createProject, allProjects, deleteProject };
+module.exports = { createProject, allProjects, deleteExistingProject };

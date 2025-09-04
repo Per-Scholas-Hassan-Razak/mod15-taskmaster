@@ -11,6 +11,6 @@ router.use(requireAuth);
 
 router.get("/", getAllProjects);
 router.post("/", createNewProject);
-router.put("/:id", deleteProject);
+router.delete("/:id", deleteProject);
 
 module.exports = router;
