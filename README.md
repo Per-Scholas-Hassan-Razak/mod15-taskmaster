@@ -1,7 +1,12 @@
 ## FULL EXPRESS BACKEND WITH AUTHORIZATION AND AUTHENTICATION
 
-## INSTALL AND RUN
+## ENVIRONMENT FILE
+     - create .env file
+     - create variable MONGO_URI with your specific connection string
+     - create varaible JWT_SECRET and assign your secret
+     - create varible PORT and assign it, code is defaulted to 3001 if env does not provide
 
+## INSTALL AND RUN
 ```bash
     git clone https://github.com/Per-Scholas-Hassan-Razak/mod15-taskmaster.git
     cd mod15-taskmaster
