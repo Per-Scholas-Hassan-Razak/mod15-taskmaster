@@ -34,4 +34,22 @@ const deleteExistingProject = async (userId, projectId) => {
     return deleted
 }
 
-module.exports = { createProject, allProjects, deleteExistingProject };
+const updateExistingProject = async(userId, projectId, newData) => {
+    if(
+       !projectId || !mongoose.Types.ObjectId.isValid(projectId)
+    
+    ){
+        const error = new Error("Invalid id")
+        error.statusCode = 400
+        throw error
+    }
+
+    const updated = await Project.findOneAndUpdate(
+      { _id: projectId, user: userId },
+      newData,
+      { new: true, runValidators: true }
+    );
+    return updated
+}
+
+module.exports = { createProject, allProjects, deleteExistingProject, updateExistingProject };
