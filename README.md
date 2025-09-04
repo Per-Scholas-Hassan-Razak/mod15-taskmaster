@@ -24,9 +24,9 @@
 
 ## API ENDPOINT DEFINITION 
 
-### baseURL: [http://localhost:3000/api]
+### baseURL: [http://localhost:3000]
 
-## User Routes [http://localhost:3000/api/users]
+## User Routes Entry Point [http://localhost:3000/api/users]
 
 ### ("/register", createNewUser)
     - router.post("/register", createNewUser);
@@ -39,7 +39,7 @@
       - validates password using bcrypt
       - return jwt token
 
-## Project Routes  [http://localhost:3000/api/projects]
+## Project Routes Entry Point  [http://localhost:3000/api/projects]
   
 ### router.get("/", getAllProjects);
       - return all project for logged in user
