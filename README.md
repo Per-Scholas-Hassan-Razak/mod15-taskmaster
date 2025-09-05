@@ -29,7 +29,6 @@
 ## User Routes Entry Point [http://localhost:3000/api/users]
 
 ### ("/register", createNewUser)
-    - router.post("/register", createNewUser);
       - creates a new user
       - throws error if user already exists
 
@@ -57,3 +56,13 @@
       - uses req params to to locate project id
       - use req body for update object
       - if projectiId and owner(userId) match then update is allowed otherwise error is thrown
+
+## Task Routes Entry Point  [http://localhost:3000/api/projects/:projectId/tasks]
+  
+
+### router.post("/", createTask);
+      - allows creation of task for a specified user and project
+      - throws validation error at controller if title not provided
+      - throws projectId validation error at service if projectId is not correct
+      - throws resource not found error at service if user is not owner of project
+      - if all checks pass then task is created and returned to user
