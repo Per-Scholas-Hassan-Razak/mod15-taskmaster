@@ -66,3 +66,9 @@
       - throws projectId validation error at service if projectId is not correct
       - throws resource not found error at service if user is not owner of project
       - if all checks pass then task is created and returned to user
+
+### router.get("/", allTasks);
+      - retrieves all tasks associated with a specific project
+      - throws projectId validation error at service if projectId is not correct
+      - throws resource not found error at service if user is not owner of project
+      - if all checks pass then tasks are retrieved
