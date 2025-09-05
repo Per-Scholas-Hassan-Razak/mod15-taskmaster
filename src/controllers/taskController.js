@@ -2,7 +2,8 @@ const handleError = require("../utils/handleError");
 const {
   createTaskForProject,
   getAllTasks,
-  deleteProjectTask
+  deleteProjectTask,
+  updateProjectTask,
 } = require("../services/taskService");
 
 const createTask = async (req, res) => {
@@ -43,18 +44,36 @@ const allTasks = async (req, res) => {
 const deleteTask = async (req, res) => {
   try {
     const { sub } = req.user;
-    const { projectId,taskId } = req.params;
-    const deleted = await deleteProjectTask(sub,projectId,taskId)
+    const { projectId, taskId } = req.params;
+    const deleted = await deleteProjectTask(sub, projectId, taskId);
     if (!deleted) {
       const error = new Error("Resource Not found!");
       error.statusCode = 404;
       throw error;
     }
-    return res.status(204).end()
+    return res.status(204).end();
   } catch (error) {
     console.error("unable to delete task", error.message);
     return handleError(error, res);
   }
 };
 
-module.exports = { createTask, allTasks, deleteTask };
+const updateTask = async (req, res) => {
+  try {
+    const { sub } = req.user;
+    const { projectId, taskId } = req.params;
+    const newData = req.body;
+    const updated = await updateProjectTask(sub, projectId, taskId, newData);
+    if (!updated) {
+      const error = new Error("Resource Not found!");
+      error.statusCode = 404;
+      throw error;
+    }
+    return res.status(200).json(updated);
+  } catch (error) {
+    console.error("unable to update task", error.message);
+    return handleError(error, res);
+  }
+};
+
+module.exports = { createTask, allTasks, deleteTask, updateTask };
