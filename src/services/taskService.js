@@ -32,7 +32,37 @@ const getAllTasks = async (userId, projectId) => {
     throw error;
   }
 
-  return await Task.find({ project: projectId })
+  return await Task.find({ project: projectId });
 };
 
-module.exports = { createTaskForProject, getAllTasks };
+const deleteProjectTask = async (userId, projectId, taskId) => {
+  if (!projectId || !mongoose.Types.ObjectId.isValid(projectId)) {
+    const error = new Error("invalid project id");
+    error.statusCode = 400;
+    throw error;
+  }
+
+  if (!taskId || !mongoose.Types.ObjectId.isValid(taskId)) {
+    const error = new Error("invalid task id");
+    error.statusCode = 400;
+    throw error;
+  }
+
+  const projectExists = await Project.exists({ _id: projectId, user: userId });
+  if (!projectExists) {
+    const error = new Error("Project not found");
+    error.statusCode = 404;
+    throw error;
+  }
+
+  const taskExists = await Task.exists({ _id: taskId, project: projectId });
+  if (!taskExists) {
+    const error = new Error("Task not found");
+    error.statusCode = 404;
+    throw error;
+  }
+
+  return await Task.findOneAndDelete({_id:taskId, project:projectId})
+};
+
+module.exports = { createTaskForProject, getAllTasks, deleteProjectTask };

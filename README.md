@@ -72,3 +72,10 @@
       - throws projectId validation error at service if projectId is not correct
       - throws resource not found error at service if user is not owner of project
       - if all checks pass then tasks are retrieved
+
+### router.delete("/", deleteTask);
+      - deletes a task associated with a specific project
+      - throws projectId/taskid validation error at service if projectId/taskid is not present or does not pass schema validation
+      - throws resource not found error at service if user is not owner of project
+      - throws resource not found error at service if task does not belong to project
+      - if all checks pass then task is deleted
